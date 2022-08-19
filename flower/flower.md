@@ -1,4 +1,4 @@
-# Benchmark QUBO models for digital halftoning -
+# Benchmark QUBO models for digital halftoning
 
 * QUBO models are generated from gray scale images flower.png and flower-k.png (256x256 pixels).
 * The original gray scale image was downloaded from unsplash.com, which offers free photos for commercial and non-commercial purposes.
