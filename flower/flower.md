@@ -3,9 +3,9 @@
 * QUBO models are generated from gray scale images flower.png and flower-k.png (256x256 pixels).
 * The original gray scale image was downloaded from unsplash.com, which offers free photos for commercial and non-commercial purposes.
 * Two QUBO problems
-1.  flower: 65536-bit QUBO problems with unknown optimal solution.
+1.  flower: a 65536-bit QUBO model with unknown optimal solution.
     Problem files: flower.json.gz/flower.mm.gz   (two files store the same QUBO model)
-2. flower-k: 65536-bit QUBO problems with a known optimal solution.
+2. flower-k: a 65536-bit QUBO model with a known optimal solution.
     Problem files: flower.json.gz/flower.mm.gz   (two files store the same QUBO model)
     Optimal solution: -225466781
 * These QUBO models are designed to obtain binary images that reporduce flower.png/flower-k.png.
@@ -70,8 +70,8 @@ $
 ## Matrix Market file format
 * Text file.
 * The base must be 1.
-* The first line must have four numbers: (1) bit count $n$ of QUBO model, (2) non-zero element count of $W=(W_{i,j})$, (3) the minimum of $W_{i,j}$, and (4) the maximum of $W_{i,j}$
-* The following lines have three numbers: $i$, $j$, and $W_{i,j}$ separated by space characters
+* The first line must have four numbers: (1) bit count $n$ of QUBO model, (2) non-zero element count of $W=(W_{i,j})$, (3) the minimum of $W_{i,j}$, and (4) the maximum of $W_{i,j}$.
+* The following lines have three numbers: $i$, $j$, and $W_{i,j}$ separated by space characters.
 * Example of QUBO model in Matrix Market format.
 ```TEXT
 5 12 -4 5
