@@ -99,3 +99,19 @@ $
 * flower-k.json.gz: QUBO model (JSON) for digital halftoning of flower-k.png
 * flower-k.mm.gz: QUBO model (Matrix Market) for digital halftoning of flower-k.png
 * Optimal solution for **flower-k** is -225466781, while that for **flower** is unknown.
+
+# Statistics
+* Statistics of two QUBO problems.
+  
+|          | flower      | flower-k    |
+| -------- | ----------- | ----------- |
+| nbit     | 65536       | 65536       |
+| nedge    | 4106120     | 4106120     |
+| min_deg  | 38          | 38          |
+| max_deg  | 128         | 128         |
+| ave_deg  | 125.3088379 | 125.3088379 |
+| min_val   | -123113     | -126077     |
+| max_val   | 6500        | 6500        |
+| density  | 0.00191209  | 0.00191209  |
+| diameter | 64          | 64          |
+| offset   | 227848577   | 225466781   |
