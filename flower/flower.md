@@ -1,11 +1,10 @@
 # Benchmark QUBO models for digital halftoning
 
-* QUBO models are generated from gray scale images flower.png and flower-k.png (256x256 pixels).
-* The original gray scale image was downloaded from unsplash.com, which offers free photos for commercial and non-commercial purposes.
-* Two QUBO problems
-1.  flower: a 65536-bit QUBO model with unknown optimal solution.
-    Problem files: flower.json.gz/flower.mm.gz   (two files store the same QUBO model)
-2. flower-k: a 65536-bit QUBO model with a known optimal solution.
+- QUBO models are generated from gray scale images flower.png and flower-k.png (256x256 pixels).
+- The original gray scale image was downloaded from unsplash.com, which offers free photos for commercial and non-commercial purposes.
+- Two QUBO models:
+  - **flower**: a 65536-bit QUBO model with unknown optimal solution. Problem files: flower.json.gz/flower.mm.gz   (two files store the same QUBO model)
+  - **flower-k**: a 65536-bit QUBO model with a known optimal solution.
     Problem files: flower.json.gz/flower.mm.gz   (two files store the same QUBO model)
     Optimal solution: -225466781
 * These QUBO models are designed to obtain binary images that reporduce flower.png/flower-k.png.
@@ -16,7 +15,7 @@
 * An $n$-bit **QUBO model** is defined by an $n\times n$ upper triangular matrix $W=(W_{i,j})$ $(0\leq i\leq j\leq n-1)$.
 * For an $n$-bit binary vector $X=(x_i)$ $(0\leq i\leq n-1)$, the energy of $X$ is $E(X)=\sum_{0\leq i\leq j\leq n-1}W_{i,j}x_ix_j$.
 * **QUBO problem** aims to find a binary vector $X$ that minimizes the energy $E(X)$.
-* QUBO models defined above are **base 0**, because the index starts from 0. On the other hand, QUBO modes can be **base 1** if the minimum index is 1 such that $W=(W_{i,j})$ $(1\leq i\leq j\leq n)$, $X=(x_i)$ $(1\leq i\leq n)$, and $E(X)=\sum_{1\leq i\leq j\leq n}W_{i,j}x_ix_j$
+* A QUBO model defined above is **base 0**, because the index starts from 0. On the other hand, a QUBO mode can be **base 1** if the minimum index is 1 such that $W=(W_{i,j})$ $(1\leq i\leq j\leq n)$, $X=(x_i)$ $(1\leq i\leq n)$, and $E(X)=\sum_{1\leq i\leq j\leq n}W_{i,j}x_ix_j$
 
 ## QUBO model and QUBO problem
 * Example of an QUBO model
@@ -37,14 +36,14 @@ $
 ## JSON format
 * JSON format has three keys.
   
-| key    | value                                                |
-| ------ | ---------------------------------------------------- |
-| "nbit" | bit count of QUBO model.                             |
-| "base" | base of QUBO model. 0 or 1. 0 is assumed if omitted. |
-| "qubo" | list of non-zero elements of $W$                     |
+| key    | value                                                      |
+| ------ | ---------------------------------------------------------- |
+| "nbit" | bit count of QUBO model.                                   |
+| "base" | base of QUBO model. 0 or 1. Zeor(0) is assumed if omitted. |
+| "qubo" | list of non-zero elements of $W$                           |
 
-* Non-zero elements of "qubo" is $[i,j,W_{i,j}]$ $(i\leq j)$.
-* Example of QUBO model in JSON format
+* Non-zero elements of "qubo" is $[i,j,W_{i,j}]$ $(base\leq i\leq j<nbit+base)$.
+* Example of a QUBO model in JSON format
 ```JSON
 {
   "nbit":5,
@@ -72,7 +71,7 @@ $
 * The base must be 1.
 * The first line must have four numbers: (1) bit count $n$ of QUBO model, (2) non-zero element count of $W=(W_{i,j})$, (3) the minimum of $W_{i,j}$, and (4) the maximum of $W_{i,j}$.
 * The following lines have three numbers: $i$, $j$, and $W_{i,j}$ separated by space characters.
-* Example of QUBO model in Matrix Market format.
+* Example of a QUBO model in Matrix Market format.
 ```TEXT
 5 12 -4 5
 1 1 2
@@ -98,20 +97,28 @@ $
 * flower-k.png: original gray scale image
 * flower-k.json.gz: QUBO model (JSON) for digital halftoning of flower-k.png
 * flower-k.mm.gz: QUBO model (Matrix Market) for digital halftoning of flower-k.png
+* flower-k-optimal.json: Optimal solution for **flower-k**
+* flower-k-optimal.png: binary image generated from solution **flower-k-ptimal.json**
 * Optimal solution for **flower-k** is -225466781, while that for **flower** is unknown.
 
 # Statistics
-* Statistics of two QUBO problems.
+* Statistics of two QUBO models.
   
-|          | flower      | flower-k    |
-| -------- | ----------- | ----------- |
-| nbit     | 65536       | 65536       |
-| nedge    | 4106120     | 4106120     |
-| min_deg  | 38          | 38          |
-| max_deg  | 128         | 128         |
-| ave_deg  | 125.3088379 | 125.3088379 |
-| min_val   | -123113     | -126077     |
-| max_val   | 6500        | 6500        |
-| density  | 0.00191209  | 0.00191209  |
-| diameter | 64          | 64          |
-| offset   | 227848577   | 225466781   |
+|          | flower      | flower-k    | description                                  |
+| -------- | ----------- | ----------- | -------------------------------------------- |
+| nbit     | 65536       | 65536       | bit count                                    |
+| nedge    | 4106120     | 4106120     | edge count of QUBO graph                     |
+| min_deg  | 38          | 38          | minimum degree of QUBO graph                 |
+| max_deg  | 128         | 128         | maximum degree of QUBO graph                 |
+| ave_deg  | 125.3088379 | 125.3088379 | average degree of QUBO graph                 |
+| density  | 0.00191209  | 0.00191209  | density of QUBO graph                        |
+| diameter | 64          | 64          | diameter of QUBO graph                       |
+| min_val  | -123113     | -126077     | minimum value of elements in $W$             |
+| max_val  | 6500        | 6500        | maximum value of elements in $W$             |
+| offset   | 227848577   | 225466781   | offset to obtain total error of binary image |
+
+* We can consider that, for a QUBO model $W=(W_{i,j})$, $W$ is the weight matrix of an weighted undirected graph called **QUBO graph**, such that
+  * QUBO graph has nbit nodes,
+  * two nodes $i$ and $j$ is connected with by an edge with weight $W_{i,j}$ if $W_{i,j}$ is non-zero.
+  * $W_{i,i}$ is the weight of node $i$.
+* Statistic above includes that for the QUBO graphs for QUBO models.
